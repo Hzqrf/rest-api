@@ -50,15 +50,15 @@ sys.path.insert(0,path)
 strDbHost = os.getenv('DB_HOST')
 strDbUser = os.getenv('DB_USER')
 strDbPassword = os.getenv('DB_PASSWORD')
-strDbPassword = funcDecrypt(strDbPassword)
+# strDbPassword = funcDecrypt(strDbPassword)
 strDbDatabase = os.getenv('DB_DATABASE')
-strRedisHost = os.getenv('REDIS_HOST')
-intRedisPort = os.getenv('REDIS_PORT')
-bLocalhostTest = os.getenv('REDIS_BLOCALHOST')
-strAwsRegionName = os.getenv('AWS_REGION_NAME')
-strAwsAccessKey = os.getenv('AWS_ACCESS_KEY')
-strAwsAccessKey = funcDecrypt(strAwsAccessKey)
-strAwsSecretKey = os.getenv('AWS_SECRET_KEY')
+# strRedisHost = os.getenv('REDIS_HOST')
+# intRedisPort = os.getenv('REDIS_PORT')
+# bLocalhostTest = os.getenv('REDIS_BLOCALHOST')
+# strAwsRegionName = os.getenv('AWS_REGION_NAME')
+# strAwsAccessKey = os.getenv('AWS_ACCESS_KEY')
+# strAwsAccessKey = funcDecrypt(strAwsAccessKey)
+# strAwsSecretKey = os.getenv('AWS_SECRET_KEY')
 
 #connection to MySQL
 def funcConMySQL ():
@@ -69,25 +69,25 @@ def funcConMySQL ():
     return connection
     
 # connection to Redis
-def funcConRedisDb (intDb):
-    if bLocalhostTest == 'False':
-        r = redis.Redis(host=str(strRedisHost),
-                        port=str(intRedisPort),
-                        db=intDb)
+# def funcConRedisDb (intDb):
+#     if bLocalhostTest == 'False':
+#         r = redis.Redis(host=str(strRedisHost),
+#                         port=str(intRedisPort),
+#                         db=intDb)
         
-        return r
+#         return r
 
-    elif bLocalhostTest == 'True':
-        r = redis.Redis(host='localhost',
-                        port='6380',
-                        db=intDb)
+#     elif bLocalhostTest == 'True':
+#         r = redis.Redis(host='localhost',
+#                         port='6380',
+#                         db=intDb)
 
-        return r
+#         return r
 
-def funcConS3 ():
-    # connect to S3
-    s3_client = boto3.client('s3',
-                    region_name = str(strAwsRegionName),
-                    aws_access_key_id = str(strAwsAccessKey),
-                    aws_secret_access_key = str(strAwsSecretKey))
-    return s3_client
+# def funcConS3 ():
+#     # connect to S3
+#     s3_client = boto3.client('s3',
+#                     region_name = str(strAwsRegionName),
+#                     aws_access_key_id = str(strAwsAccessKey),
+#                     aws_secret_access_key = str(strAwsSecretKey))
+#     return s3_client

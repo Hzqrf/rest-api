@@ -43,7 +43,7 @@ from dotenv import load_dotenv
 
 # source : self
 # usage : to get database connection and redis connection
-# from funcConnection import funcConMySQL, funcConRedisDb, funcConS3
+from funcConn import funcConMySQL
 
 # source : self
 # usage : to get custom error message
@@ -92,11 +92,11 @@ logging.basicConfig(filename="{}/log/restAPI.log".format(parPath),
 logger = logging.getLogger
 
 # get value from env
-# strDbHost = os.getenv('DB_HOST')
-# strDbUser = os.getenv('DB_USER')
-# strDbPassword = os.getenv('DB_PASSWORD')
+strDbHost = os.getenv('DB_HOST')
+strDbUser = os.getenv('DB_USER')
+strDbPassword = os.getenv('DB_PASSWORD')
 # strDbPassword = funcDecrypt(strDbPassword)
-# strDbDatabase = os.getenv('DB_DATABASE')
+strDbDatabase = os.getenv('DB_DATABASE')
 strUserApi = os.getenv('API_USERNAME')
 strUserApiPassword = os.getenv('API_PASSWORD')
 # strBucketImage = os.getenv('BUCKET_NAME')
@@ -130,6 +130,26 @@ def funcGetMovieDetails():
     APIDocument = requests.get(strUrlApi)
     result = APIDocument.json()
     return jsonify(result)
+
+# api to get movie details
+@app.route('/getDatabase',  methods=['POST'])
+@cross_origin()
+def funcGetDatabase():
+    # strTitle = request.args.get('t', None)
+    # connect to DB
+    connection = funcConMySQL()
+    print(connection)
+    cursor = connection.cursor(buffered=True)
+    sqlStatement = "SELECT * FROM haziq_test.meja"
+    cursor.execute(sqlStatement)
+    tplResult = cursor.fetchall()
+    print(tplResult)
+
+    # APIDocument = requests.get(strOmdbUrl, auth = (strAuth['username'], strAuth['password']))
+    # strUrlApi = strOmdbUrl+"/?apikey="+strOmdbKey+"&t="+strTitle
+    # APIDocument = requests.get(strUrlApi)
+    # result = APIDocument.json()
+    return jsonify(tplResult)
 
 if __name__ == '__main__':
     # 0.0.0.0 indicate global value for server.  This allow for startup at Windows and Ubuntu servers

@@ -492,3 +492,110 @@ NameError: name 'dictReturn' is not defined
 2025-06-22 13:28:54,477:INFO:_internal.py - [33mPress CTRL+C to quit[0m
 2025-06-22 13:28:56,983:INFO:_internal.py - 127.0.0.1 - - [22/Jun/2025 13:28:56] "GET /getMovieDetails?t=the%20avengers HTTP/1.1" 200 -
 2025-06-22 13:29:24,452:INFO:_internal.py - 127.0.0.1 - - [22/Jun/2025 13:29:24] "GET /getMovieDetails?t=interstellar HTTP/1.1" 200 -
+2025-06-22 22:50:04,646:WARNING:core.py - Unknown option passed to Flask-CORS: origin
+2025-06-22 22:50:35,194:WARNING:core.py - Unknown option passed to Flask-CORS: origin
+2025-06-22 22:50:35,275:INFO:_internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2025-06-22 22:50:35,275:INFO:_internal.py - [33mPress CTRL+C to quit[0m
+2025-06-22 22:50:42,426:INFO:_internal.py - 127.0.0.1 - - [22/Jun/2025 22:50:42] "[31m[1mGET /getDatabase HTTP/1.1[0m" 405 -
+2025-06-22 22:51:12,329:WARNING:core.py - Unknown option passed to Flask-CORS: origin
+2025-06-22 22:51:12,345:INFO:_internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2025-06-22 22:51:12,345:INFO:_internal.py - [33mPress CTRL+C to quit[0m
+2025-06-22 22:51:35,373:INFO:_internal.py - 127.0.0.1 - - [22/Jun/2025 22:51:35] "[31m[1mGET /getDatabase HTTP/1.1[0m" 405 -
+2025-06-22 22:51:54,426:WARNING:core.py - Unknown option passed to Flask-CORS: origin
+2025-06-22 22:51:54,444:INFO:_internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2025-06-22 22:51:54,444:INFO:_internal.py - [33mPress CTRL+C to quit[0m
+2025-06-22 22:52:00,284:ERROR:app.py - Exception on /getDatabase [POST]
+Traceback (most recent call last):
+  File "C:\Users\USER\anaconda3\Lib\site-packages\mysql\connector\connection_cext.py", line 308, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Access denied for user 'root'@'localhost' (using password: YES)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\anaconda3\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Desktop\Repo\rest-api\src\restApi.py", line 141, in funcGetDatabase
+    connection = funcConMySQL()
+                 ^^^^^^^^^^^^^^
+  File "C:\Users\USER\Desktop\Repo\rest-api\src\funcConn.py", line 65, in funcConMySQL
+    connection = mysql.connector.connect(host=str(strDbHost),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\mysql\connector\pooling.py", line 293, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\mysql\connector\connection_cext.py", line 129, in __init__
+    self.connect(**kwargs)
+  File "C:\Users\USER\anaconda3\Lib\site-packages\mysql\connector\abstracts.py", line 1237, in connect
+    self._open_connection()
+  File "C:\Users\USER\anaconda3\Lib\site-packages\mysql\connector\connection_cext.py", line 313, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+2025-06-22 22:52:00,293:INFO:_internal.py - 127.0.0.1 - - [22/Jun/2025 22:52:00] "[35m[1mPOST /getDatabase HTTP/1.1[0m" 500 -
+2025-06-22 22:52:15,573:WARNING:core.py - Unknown option passed to Flask-CORS: origin
+2025-06-22 22:52:15,584:INFO:_internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2025-06-22 22:52:15,584:INFO:_internal.py - [33mPress CTRL+C to quit[0m
+2025-06-22 22:52:16,684:ERROR:app.py - Exception on /getDatabase [POST]
+Traceback (most recent call last):
+  File "C:\Users\USER\anaconda3\Lib\site-packages\mysql\connector\connection_cext.py", line 308, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Access denied for user 'root'@'localhost' (using password: YES)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\USER\anaconda3\Lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\flask_cors\extension.py", line 176, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\flask_cors\decorator.py", line 130, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+                         ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\Desktop\Repo\rest-api\src\restApi.py", line 140, in funcGetDatabase
+    connection = funcConMySQL()
+                 ^^^^^^^^^^^^^^
+  File "C:\Users\USER\Desktop\Repo\rest-api\src\funcConn.py", line 65, in funcConMySQL
+    connection = mysql.connector.connect(host=str(strDbHost),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\mysql\connector\pooling.py", line 293, in connect
+    return CMySQLConnection(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\USER\anaconda3\Lib\site-packages\mysql\connector\connection_cext.py", line 129, in __init__
+    self.connect(**kwargs)
+  File "C:\Users\USER\anaconda3\Lib\site-packages\mysql\connector\abstracts.py", line 1237, in connect
+    self._open_connection()
+  File "C:\Users\USER\anaconda3\Lib\site-packages\mysql\connector\connection_cext.py", line 313, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+2025-06-22 22:52:16,694:INFO:_internal.py - 127.0.0.1 - - [22/Jun/2025 22:52:16] "[35m[1mPOST /getDatabase HTTP/1.1[0m" 500 -
