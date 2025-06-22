@@ -39,15 +39,15 @@ from dotenv import load_dotenv
 
 # source : self
 # usage : to get database connection and redis connection
-from funcFile import funcDict2StrInsert, funcDict2StrUpdate, funcDecrypt
+# from funcFile import funcDict2StrInsert, funcDict2StrUpdate, funcDecrypt
 
 # source : self
 # usage : to get database connection and redis connection
-from funcConnection import funcConMySQL, funcConRedisDb, funcConS3
+# from funcConnection import funcConMySQL, funcConRedisDb, funcConS3
 
 # source : self
 # usage : to get custom error message
-from customErrorMessage import funcErrMessage
+# from customErrorMessage import funcErrMessage
 
 # source : library
 # usage : to generate uuid
@@ -60,10 +60,6 @@ import boto3
 # source : library
 # usage : to send a request 
 import requests
-
-# source : library
-# usage : to run cron job 
-from flask_apscheduler import APScheduler
 
 # source : library
 # usage : get counter
@@ -89,7 +85,7 @@ sys.path.insert(0, path)
 
 # create and configure logger
 logFormat = "%(asctime)s:%(levelname)s:%(filename)s - %(message)s"
-logging.basicConfig(filename="{}/log/swiftoAPI.log".format(parPath),
+logging.basicConfig(filename="{}/log/restAPI.log".format(parPath),
                     level=logging.INFO,
                     format=logFormat,
                     )
@@ -112,9 +108,6 @@ app = Flask(__name__)
 app.config["JSON_SORT_KEYS"] = True
 app.config['CORS_HEADERS'] = 'Content-Type'
 cors = CORS(app, resources={r"*": {"origin": "*"}})
-scheduler = APScheduler()
-scheduler.init_app(app)
-scheduler.start()
 
 # api to check health check for port 5001
 @app.route('/healthCheck')
@@ -130,12 +123,13 @@ def funcHealthCheck():
 @app.route('/getMovieDetails')
 @cross_origin()
 def funcGetMovieDetails():
+    strTitle = request.args.get('t', None)
 
     # APIDocument = requests.get(strOmdbUrl, auth = (strAuth['username'], strAuth['password']))
-    APIDocument = requests.get(strOmdbUrl, "/?apikey=", strOmdbKey)
+    strUrlApi = strOmdbUrl+"/?apikey="+strOmdbKey+"&t="+strTitle
+    APIDocument = requests.get(strUrlApi)
     result = APIDocument.json()
-    print(result)
-    return jsonify(dictReturn)
+    return jsonify(result)
 
 if __name__ == '__main__':
     # 0.0.0.0 indicate global value for server.  This allow for startup at Windows and Ubuntu servers
